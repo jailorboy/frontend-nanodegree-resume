@@ -116,7 +116,7 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: gold;
 }
 
 .flex-box {
@@ -213,3 +213,13 @@ span {
     display: block;
   }
 }
+
+#profile {
+  margin-top: 10px;
+  height: 140px;
+  width: 150px;
+  margin-left: 100px;
+  
+}
+
+
