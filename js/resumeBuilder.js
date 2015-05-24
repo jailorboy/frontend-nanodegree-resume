@@ -25,15 +25,19 @@ var bio = {
 + bio.skills.join(", ")+"</dd>";
 $("#main").append(bioString);
 */
-
+//define objects for work, education etc.
 var work = [{
 	"employer" : "ScienceTech Club, SXC",
 	"title" : "Vice-President",
-	"description" : "Organized different seminars, Run different programs, participated in science exhibitions"
+	"description" : "Organized different seminars, Run different programs, participated in science exhibitions",
+	"city" : "Kathmandu",
+	"date" : '2012-2014'
 }, {
 	"employer": "Competitions, Contests",
 	"title": "Developer, Programmer and Hardware Enthusiast",
-	"description": "Participated in different contests and achieved different prizes/accomplishments"
+	"description": "Participated in different contests and achieved different prizes/accomplishments",
+	"city" : "Kathmandu",
+	"date" : "2010-2015"
 }];
 
 var onlineCourses = [{
@@ -76,5 +80,50 @@ var projects = [{
 	"image" : "http://mike.teczno.com/img/google-maps-track.png"
 }];
 
+//check if there's skills or not
+if (bio.hasOwnProperty("skills"))
+{
+	$("#header").append(HTMLskillsStart);
+	for (var i =0; i < bio.skills.length; i++){
+			$("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+		}
+}
 
+/**
+  *A function to display all the works
+  */
+function displayWork()
+{
+	for (each in work)
+	{
+		$("#workExperience").append(HTMLworkStart);
+		var job = HTMLworkEmployer.replace("%data%", work[each].title) +HTMLworkTitle.replace("%data%",work[each].employer);
+		$(".work-entry:last").append(job);
+		var details = HTMLworkDates.replace("%data%", work[each].date)+HTMLworkLocation.replace("%data%",work[each].city)
+		+HTMLworkDescription.replace("%data%",work[each].description);
+		$(".work-entry:last").append(details);
+	}
+}
 
+//display work
+displayWork();
+
+//log clicks
+$(document).click(function(loc){
+	logClicks(event.pageX, event.pageY);
+});
+
+//add an internationalize button
+$("#main").append(internationalizeButton);
+
+/**
+  *return an international version of the name
+  */
+function inName(name)
+{
+		var nameArray = name.split(" ");
+		nameArray[0] = nameArray[0].slice(0,1).toUpperCase()+nameArray[0].slice(1).toLowerCase();
+		nameArray[1] = nameArray[1].toUpperCase();
+		return nameArray.join(" ");
+	
+}
